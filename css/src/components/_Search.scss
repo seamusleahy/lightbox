@@ -1,0 +1,76 @@
+// The search bar
+//
+// .is-empty  - Moves the bar to the middle of the screen and displays the label
+.Search {
+  $transition-total-time: 0.5s;
+  $transition-label-factor: 0.5;
+
+  @extend %u-content-width;
+  transform: translateY(0vh);
+  margin-top: -40px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 5;
+
+  transition: transform $transition-total-time;
+
+  .Search-label {
+    @extend %u-default-font;
+    display: block;
+    padding: 10px 0;
+
+    text-transform: uppercase;
+    opacity: 0;
+
+    transition: opacity ($transition-label-factor * $transition-total-time);
+    animation-name: fadeInAnimation;
+    animation-duration: 4s;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
+  }
+
+  .Search-inputWrapper {
+    position: relative;
+
+    animation-name: fadeInAnimation;
+    animation-duration: 6s;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+
+    input {
+      @extend %u-search-font;
+      box-sizing: border-box;
+      padding: 15px;
+      width: 100%;
+
+      border: 0 none;
+      background-color: $just-white;
+      color: $eggplant;
+      box-shadow: 0 0 20px rgba($black, 0.5);
+      outline: none;
+
+      transition: color 0.5s;
+
+      &:focus {
+        color: $black;
+      }
+    }
+
+    .Search-inputWrapper-loading {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  &.is-empty {
+    transform: translateY(50vh);
+    margin-top: -40px;
+
+    .Search-label {
+      opacity: 1;
+      transition-delay: ((1 - $transition-label-factor) * $transition-total-time);
+    }
+  }
+}

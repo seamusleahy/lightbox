@@ -1,0 +1,130 @@
+// The lightbox screen (curtain) and modal
+//
+// .is-visible  - Makes the lightbox appear
+.Lightbox {
+  $nav-button-height: 150px;
+  $nav-button-width: 80px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.5s;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .Lightbox-screen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-color: rgba($dusk, 0.75);
+  }
+
+  .Lightbox-modal {
+    position: relative;
+    margin: auto;
+  }
+
+  .Lightbox-title {
+    padding-bottom: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .Lightbox-media video {
+    background-color: $black;
+    box-shadow: 0 0 25px rgba($black, 0.5);
+    max-width: 100%;
+    max-height: 90%;
+  }
+
+  .Lightbox-closeButton {
+    top: 20px;
+    right: 20px;
+    display: block;
+    position: absolute;
+    z-index: 5;
+
+    cursor: pointer;
+
+    &:hover {
+      svg {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .Lightbox-nav {
+    position: relative;
+
+    .Lightbox-nav-button {
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: ($nav-button-height / -2);
+      z-index: 3;
+
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+
+      &:hover {
+        svg {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .Lightbox-nav-prevButton {
+      left: 0;
+    }
+
+    .Lightbox-nav-nextButton {
+      right: 0;
+    }
+
+    &.has-previous .Lightbox-nav-prevButton,
+    &.has-next .Lightbox-nav-nextButton {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  svg {
+    opacity: 0.5;
+    transform: scale(1);
+    transition: all 0.5s;
+  }
+  path {
+    fill: $snowy;
+  }
+
+  .Lightbox-title,
+  .Lightbox-nav {
+    padding-left: ($nav-button-width + 10px);
+    padding-right: ($nav-button-width + 10px);
+
+    @media (max-width: 500px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+// The loading bar component
+//
+// .is-visible  - Makes the loading bar appear
+.LoadingBar {
+  $hidden-height: 0px;
+  $visible-height: 10px;
+  $loop-width: 800px;
+
+  width: 100%;
+  height: $hidden-height;
+
+  background-image: $loading-gradient;
+  background-size: $loop-width $visible-height;
+
+  transition: height 0.5s;
+  animation-name: loadingAnim;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @keyframes loadingAnim {
+    0% {
+      background-position-x: 0px;
+    }
+
+    100% {
+      background-position-x: $loop-width;
+    }
+  }
+
+  &.is-visible {
+    height: $visible-height;
+  }
+}

@@ -1,0 +1,35 @@
+// Add increasing delays to the animation for the elements
+//
+// $number-of-element (int) - The number of elements to delay
+// $delay (time) - The amount of time to delay between elements
+@mixin increasingly-delay-animation($number-of-element, $delay: 0.5s) {
+  @for $i from 1 to $number-of-element {
+    &:nth-child(#{$i}) {
+      animation-delay: ($delay * ($i - 1));
+    }
+
+    &:nth-child(n + #{$number-of-element}) {
+      animation-delay: ($delay * ($number-of-element - 1));
+    }
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInAndUpAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

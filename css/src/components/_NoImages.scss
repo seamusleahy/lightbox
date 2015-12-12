@@ -1,0 +1,33 @@
+// The no images were found in the search box
+//
+// .is-visible  - Makes the message appear
+.NoImages {
+  $search-height: 110px;
+
+  display: none;
+  height: 100vh;
+  margin-top: -($search-height);
+  padding-top: $search-height;
+  box-sizing: border-box;
+
+  &-content {
+    @extend %u-content-width;
+    @extend %u-default-font;
+    line-height: 1.5;
+    text-transform: uppercase;
+
+    p {
+      animation-duration: 1.5s;
+      animation-fill-mode: backwards;
+      @include increasingly-delay-animation(4);
+    }
+  }
+
+  &.is-visible {
+    display: flex;
+
+    .NoImages-content p {
+      animation-name: fadeInAndUpAnimation;
+    }
+  }
+}

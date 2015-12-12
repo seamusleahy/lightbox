@@ -1,0 +1,52 @@
+$thumbnail-dimension: 200px;
+
+.Thumbnails {
+  .Thumbnails-gifs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+  .Thumbnails-gif {
+    height: $thumbnail-dimension;
+    width: $thumbnail-dimension;
+    position: relative;
+
+    cursor: pointer;
+    overflow: hidden;
+    background-color: $snowy;
+    animation-name: fadeInAndUpAnimation;
+    animation-duration: 0.5s;
+    animation-fill-mode: backwards;
+
+    @for $i from 1 through 100 {
+      &:nth-child(#{$i}) {
+        animation-delay: (0.03s * $i);
+      }
+    }
+
+    .Thumbnails-gif-img {
+      transition: all 2s;
+      background-position: 50% 50%;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    &:hover .Thumbnails-gif-img {
+      transform: scale(1.2);
+    }
+
+
+    @for $i from 1 to 50 {
+      @media (min-width: ($i * $thumbnail-dimension)) {
+        width: (100vw / $i);
+        height: (100vw / $i);
+      }
+    }
+  }
+}

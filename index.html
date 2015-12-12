@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Giphy API and Lightbox</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/dist/lightbox.css">
+    </head>
+    <body>
+
+      <div data-component="search" class="Search is-empty">
+        <label for="q" class="Search-label">What do you want to see?</label>
+        <div class="Search-inputWrapper">
+          <input type="text" name="q" id="q" autofocus  autocomplete="off">
+          <div class="LoadingBar Search-inputWrapper-loading" data-component="loading"></div>
+        </div>
+      </div>
+
+      <section data-component="thumbnails" class="Thumbnails">
+        <div class="Thumbnails-gifs" data-gifs-holder></div>
+
+        <div class="Thumbnails-loading" data-gif-loading></div>
+
+        <div class="NoImages" data-gif-empty>
+          <div class="NoImages-content">
+            <p>No results</p>
+            <p>Not a thing</p>
+            <p>Nada</p>
+            <p>Come on Giphy</p>
+          </div>
+        </div>
+
+        <script type="text/template" data-thumbnail-template>
+          <article class="Thumbnails-gif" data-giphy-id="{{ id }}" data-modal-index="{{ index }}">
+            <div class="Thumbnails-gif-img"style="background-image: url({{ src }});"><div>
+          </article>
+        </script>
+      </section>
+
+      <div data-component="lightbox" class="Lightbox">
+        <div class="Lightbox-screen" data-screen></div>
+
+        <a class="Lightbox-closeButton" data-close>
+          <svg width="50" height="50">
+            <path d="M28.1,25.4L49.2,3.6c1-1,1-2,0-2.8c-1-1-2-1-2.8,0L25,22.3L3.6,0.8c-0.9-1-1.8-1-2.8,0c-1,0.9-1,1.8,0,2.8l21.1,21.8
+      L0.8,47.3c-1,1-1,2,0,2.8c1,1,2,1,2.8,0L25,28.6l21.4,21.5c0.9,1,1.8,1,2.8,0c1-0.9,1-1.8,0-2.8L28.1,25.4z"></path>
+          </svg>
+        </a>
+
+        <article class="Lightbox-modal">
+          <h1 data-title class="Lightbox-title"></h1>
+
+          <div class="Lightbox-nav" data-nav-box>
+            <a data-prev-button class="Lightbox-nav-button Lightbox-nav-prevButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="150">
+                <path d="M77.8,10.5c3-3,3-5.7,0-8.3c-3-3-5.7-3-8.3,0L2.1,70c-2.8,2.8-2.8,5.6,0,8.6l67.4,67.8c2.5,3,5.3,3,8.3,0c3-2.5,3-5.3,0-8.3
+	l-61.6-64L77.8,10.5z"></path>
+              </svg>
+            </a>
+            <a data-next-button class="Lightbox-nav-button Lightbox-nav-nextButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="150">
+                <path d="M2.2,10.5l61.6,63.7l-61.6,64c-3,3-3,5.7,0,8.3c3,3,5.7,3,8.3,0l67.4-67.8c2.8-3,2.8-5.8,0-8.6L10.5,2.2c-2.5-3-5.3-3-8.3,0
+	C-0.7,4.8-0.7,7.5,2.2,10.5z"></path>
+              </svg>
+            </a>
+
+            <div class="Lightbox-media" data-media-holder></div>
+          </div>
+        </article>
+      </div>
+
+      <!--
+      COMMENTARY: For a production, I would use tooling for modules and
+      dependencies. But for this exercise, I'm keeping it simple and
+      plain JavaScript.
+      -->
+      <script src="./js/lib/storage.js"></script>
+      <script src="./js/lib/dom.js"></script>
+      <script src="./js/lib/promise.js"></script>
+      <script src="./js/lib/xhr.js"></script>
+      <script src="./js/lib/utils.js"></script>
+
+      <script src="./js/components/ElementComponentSetup.js"></script>
+      <script src="./js/components/Search.js"></script>
+      <script src="./js/components/Thumbnails.js"></script>
+      <script src="./js/components/Lightbox.js"></script>
+      <script src="./js/components/Loading.js"></script>
+
+      <script src="./js/data/storageReducer.js"></script>
+      <script src="./js/data/UpdateGifs.js"></script>
+
+      <script src="./js/lightbox.js"></script>
+  </body>
+</html>

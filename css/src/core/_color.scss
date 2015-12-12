@@ -1,0 +1,14 @@
+$dusk: #2b2b35;
+$eggplant: #73738C;
+$snowy: #fcf0fc;
+$just-white: #FEFCFE;
+$black: #000000;
+$almost-black: #111119;
+$loading1: #32636B;
+$loading2: #148599;
+$loading-gradient: linear-gradient(90deg, $loading1, $loading2, $loading1);
+
+body {
+  background-color: $dusk;
+  color: $just-white;
+}
